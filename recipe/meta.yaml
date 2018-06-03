@@ -1,6 +1,6 @@
 {% set name = "black" %}
-{% set version = "18.5b0" %}
-{% set sha256 = "4fec2566f9fbbd4a58de50a168cbe3ab952713530410d227e82e4c65d1fad946" %}
+{% set version = "18.5b1" %}
+{% set sha256 = "c956857a831e508e75f0dc754b86982bad98d95c96aae39c20749209b3958ad7" %}
 
 package:
   name: {{ name|lower }}
@@ -53,3 +53,4 @@ extra:
     - carlodri
     - ambv
     - mariusvniekerk
+    - xhochy
