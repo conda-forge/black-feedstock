@@ -1,6 +1,6 @@
 {% set name = "black" %}
-{% set version = "18.6b2" %}
-{% set sha256 = "fc26c4ab28c541fb824f59fa83d5702f75829495d5a1dee603b29bc4fbe79095" %}
+{% set version = "18.6b4" %}
+{% set sha256 = "22158b89c1a6b4eb333a1e65e791a3f8b998cf3b11ae094adb2570f31f769a44" %}
 
 package:
   name: {{ name|lower }}
