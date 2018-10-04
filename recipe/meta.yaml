@@ -1,11 +1,6 @@
 {% set name = "black" %}
-<<<<<<< HEAD
 {% set version = "18.9b0" %}
 {% set sha256 = "e030a9a28f542debc08acceb273f228ac422798e5215ba2a791a6ddeaaca22a5" %}
-=======
-{% set version = "18.6b4" %}
-{% set sha256 = "22158b89c1a6b4eb333a1e65e791a3f8b998cf3b11ae094adb2570f31f769a44" %}
->>>>>>> upstream/master
 
 package:
   name: {{ name|lower }}
