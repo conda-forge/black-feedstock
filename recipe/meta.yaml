@@ -1,20 +1,19 @@
 {% set name = "black" %}
-{% set version = "18.9b0" %}
-{% set sha256 = "e030a9a28f542debc08acceb273f228ac422798e5215ba2a791a6ddeaaca22a5" %}
+{% set version = "19.3b0" %}
+{% set sha256 = "68950ffd4d9169716bcb8719a56c07a2f4485354fec061cdd5910aa07369731c" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
   entry_points:
     - black = black:main
 
