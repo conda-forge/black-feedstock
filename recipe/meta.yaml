@@ -33,7 +33,7 @@ test:
     - black --help
 
 about:
-  home: https://github.com/ambv/black
+  home: https://github.com/python/black
   license: MIT
   license_family: MIT
   license_file: LICENSE
@@ -44,8 +44,8 @@ about:
     to cease control over minutiae of hand-formatting. In return, Black gives
     you speed, determinism, and freedom from pycodestyle nagging about
     formatting. You will save time and mental energy for more important matters.
-  doc_url: https://github.com/ambv/black
-  dev_url: https://github.com/ambv/black
+  doc_url: https://github.com/python/black
+  dev_url: https://github.com/python/black
 
 extra:
   recipe-maintainers:
