@@ -12,15 +12,17 @@ source:
 build:
   number: 0
   script: "{{ PYTHON }} -m pip install . -vv"
+  skip: True  # [py<36]
   entry_points:
     - black = black:patched_main
 
 requirements:
   host:
-    - python >=3.6
+    - python
     - pip
+    - setuptools_scm
   run:
-    - python >=3.6
+    - python
     - click >=6.5
     - attrs >=18.1.0
     - appdirs
