@@ -1,6 +1,5 @@
 {% set name = "black" %}
-{% set version = "19.3b0" %}
-{% set sha256 = "68950ffd4d9169716bcb8719a56c07a2f4485354fec061cdd5910aa07369731c" %}
+{% set version = "19.10b0" %}
 
 package:
   name: {{ name|lower }}
@@ -8,25 +7,32 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: c2edb73a08e9e0e6f65a0e6af18b059b8b1cdd5bef997d7a0b181df93dc81539
 
 build:
-  noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  script: "{{ PYTHON }} -m pip install . -vv"
+  skip: True  # [py<36]
   entry_points:
-    - black = black:main
+    - black = black:patched_main
 
 requirements:
   host:
-    - python >=3.6
+    - python
     - pip
+    - setuptools_scm
   run:
-    - python >=3.6
+    - python
     - click >=6.5
     - attrs >=18.1.0
     - appdirs
     - toml >=0.9.4
+    - typed-ast >=1.4.0
+    - regex
+    - pathspec >=0.6,<1
+    - dataclasses >=0.6  # [py<37]
+    - typing_extensions >=3.7.4
+    - mypy_extensions >=0.4.3
 
 test:
   commands:
