@@ -33,9 +33,9 @@ outputs:
         - typed-ast >=1.4.0
         - regex
         - pathspec >=0.6,<1
-      test:
-        commands:
-         - black --help
+    test:
+      commands:
+        - black --help
 
 outputs:
   - name: {{ name }}d
@@ -60,11 +60,11 @@ outputs:
         - regex
         - pathspec >=0.6,<1
         - aiohttp >=3.3.2
-        - aiohttp-cors
-      test:
-        commands:
-         - black --help
-         - blackd --help
+       - aiohttp-cors
+    test:
+      commands:
+        - black --help
+        - blackd --help
 
 about:
   home: https://github.com/python/black
