@@ -45,7 +45,7 @@ outputs:
       noarch: python
     requirements:
       run:
-        - {{ pin_subpackage('black', max_pin="x.x.x") }}
+        - {{ pin_subpackage('black', exact=True) }}
         - aiohttp >=3.3.2
         - aiohttp-cors
     test:
