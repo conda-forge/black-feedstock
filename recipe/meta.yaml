@@ -19,6 +19,7 @@ outputs:
       script: "python -m pip install . -vv"
       entry_points:
         - black = black:patched_main
+        - blackd = blackd:patched_main
     requirements:
       host:
         - python >=3.6
