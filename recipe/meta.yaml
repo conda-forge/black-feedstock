@@ -11,7 +11,6 @@ source:
 
 build:
   number: 1
-  skip: True  # [py<36]
 
 outputs:
   - name: {{ name }}
@@ -23,11 +22,11 @@ outputs:
         - blackd = blackd=blackd:patched_main
     requirements:
       host:
-        - python
+        - python >=3.6
         - pip
         - setuptools_scm
       run:
-        - python
+        - python >=3.6
         - click >=6.5
         - attrs >=18.1.0
         - appdirs
@@ -38,6 +37,7 @@ outputs:
     test:
       commands:
         - black --help
+  
   - name: {{ name }}d
     build:
       noarch: python
