@@ -38,8 +38,6 @@ outputs:
     test:
       commands:
         - black --help
-
-outputs:
   - name: {{ name }}d
     build:
       noarch: python
