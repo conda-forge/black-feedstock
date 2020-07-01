@@ -39,6 +39,7 @@ outputs:
   
   - name: {{ name }}d
     build:
+      noarch: python
       entry_points:
         - blackd = blackd:patched_main
     requirements:
