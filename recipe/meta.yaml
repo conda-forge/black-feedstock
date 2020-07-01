@@ -17,7 +17,7 @@ outputs:
   - name: {{ name }}
     build:
       noarch: python
-      script: "{{ PYTHON }} -m pip install . -vv"
+      script: "python -m pip install . -vv"
       entry_points:
         - black = black:patched_main
         - blackd = blackd=blackd:patched_main
