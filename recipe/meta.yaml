@@ -10,13 +10,17 @@ source:
   sha256: c2edb73a08e9e0e6f65a0e6af18b059b8b1cdd5bef997d7a0b181df93dc81539
 
 build:
-  number: 1
+  number: 2
+  noarch: python
+
+test:
+  commands:
+    - black --help
 
 outputs:
   - name: {{ name }}
     build:
-      noarch: python
-      script: "python -m pip install . -vv"
+      script: build_base.sh
       entry_points:
         - black = black:patched_main
         - blackd = blackd:patched_main
@@ -34,15 +38,9 @@ outputs:
         - typed-ast >=1.4.0
         - regex
         - pathspec >=0.6,<1
-    test:
-      commands:
-        - black --help
   
   - name: {{ name }}d
     build:
-      noarch: python
-      entry_points:
-        - blackd = blackd:patched_main
     requirements:
       run:
         - {{ pin_subpackage('black', exact=True) }}
@@ -50,7 +48,6 @@ outputs:
         - aiohttp-cors
     test:
       commands:
-        - black --help
         - blackd --help
 
 about:
