@@ -11,18 +11,15 @@ source:
 
 build:
   number: 2
-  noarch: python
   entry_points:
     - black = black:patched_main
     - blackd = blackd:patched_main
 
-test:
-  commands:
-    - black --help
-
 outputs:
   - name: {{ name }}
-    script: build_base.sh
+    build:
+     noarch: python
+     script: build_base.sh
     requirements:
       host:
         - python >=3.6
@@ -37,10 +34,12 @@ outputs:
         - typed-ast >=1.4.0
         - regex
         - pathspec >=0.6,<1
+    test:
+      commands:
+        - black --help
   
   - name: {{ name }}d
     build:
-      noarch: python
     requirements:
       run:
         - {{ pin_subpackage('black', exact=True) }}
@@ -48,6 +47,7 @@ outputs:
         - aiohttp-cors
     test:
       commands:
+        - black --help 
         - blackd --help
 
 about:
