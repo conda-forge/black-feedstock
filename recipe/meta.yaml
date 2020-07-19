@@ -16,6 +16,10 @@ build:
     - black = black:patched_main
     - blackd = blackd:patched_main
 
+test:
+  commands:
+    - black --help
+
 outputs:
   - name: {{ name }}
     script: build_base.sh
@@ -33,9 +37,6 @@ outputs:
         - typed-ast >=1.4.0
         - regex
         - pathspec >=0.6,<1
-    test:
-      commands:
-        - black --help
   
   - name: {{ name }}d
     build:
