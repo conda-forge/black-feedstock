@@ -12,6 +12,9 @@ source:
 build:
   number: 2
   noarch: python
+  entry_points:
+    - black = black:patched_main
+    - blackd = blackd:patched_main
 
 test:
   commands:
@@ -20,9 +23,6 @@ test:
 outputs:
   - name: {{ name }}
     script: build_base.sh
-    entry_points:
-      - black = black:patched_main
-      - blackd = blackd:patched_main
     requirements:
       host:
         - python >=3.6
