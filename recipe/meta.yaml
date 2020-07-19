@@ -11,15 +11,14 @@ source:
 
 build:
   number: 2
+  noarch: python
   entry_points:
     - black = black:patched_main
     - blackd = blackd:patched_main
 
 outputs:
   - name: {{ name }}
-    build:
-     noarch: python
-     script: build_base.sh
+    script: build_base.sh
     requirements:
       host:
         - python >=3.6
@@ -40,6 +39,7 @@ outputs:
   
   - name: {{ name }}d
     build:
+      noarch: python
     requirements:
       run:
         - {{ pin_subpackage('black', exact=True) }}
