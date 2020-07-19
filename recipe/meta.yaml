@@ -19,11 +19,10 @@ test:
 
 outputs:
   - name: {{ name }}
-    build:
-      script: build_base.sh
-      entry_points:
-        - black = black:patched_main
-        - blackd = blackd:patched_main
+    script: build_base.sh
+    entry_points:
+      - black = black:patched_main
+      - blackd = blackd:patched_main
     requirements:
       host:
         - python >=3.6
@@ -40,7 +39,6 @@ outputs:
         - pathspec >=0.6,<1
   
   - name: {{ name }}d
-    build:
     requirements:
       run:
         - {{ pin_subpackage('black', exact=True) }}
