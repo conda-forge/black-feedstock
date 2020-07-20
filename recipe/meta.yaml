@@ -10,33 +10,46 @@ source:
   sha256: c2edb73a08e9e0e6f65a0e6af18b059b8b1cdd5bef997d7a0b181df93dc81539
 
 build:
-  number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
-  skip: True  # [py<36]
+  number: 2
+  noarch: python
   entry_points:
     - black = black:patched_main
-
-requirements:
-  host:
-    - python
-    - pip
-    - setuptools_scm
-  run:
-    - python
-    - click >=6.5
-    - attrs >=18.1.0
-    - appdirs
-    - toml >=0.9.4
-    - typed-ast >=1.4.0
-    - regex
-    - pathspec >=0.6,<1
-    - dataclasses >=0.6  # [py<37]
-    - typing_extensions >=3.7.4
-    - mypy_extensions >=0.4.3
+    - blackd = blackd:patched_main
 
 test:
   commands:
     - black --help
+
+outputs:
+  - name: {{ name }}
+    script: build_base.sh
+    requirements:
+      host:
+        - python >=3.6
+        - pip
+        - setuptools_scm
+      run:
+        - python >=3.6
+        - click >=6.5
+        - attrs >=18.1.0
+        - appdirs
+        - toml >=0.9.4
+        - typed-ast >=1.4.0
+        - regex
+        - pathspec >=0.6,<1
+  
+  - name: {{ name }}d
+    build:
+      noarch: python
+    requirements:
+      run:
+        - {{ pin_subpackage('black', exact=True) }}
+        - aiohttp >=3.3.2
+        - aiohttp-cors
+    test:
+      commands:
+        - black --help 
+        - blackd --help
 
 about:
   home: https://github.com/python/black
