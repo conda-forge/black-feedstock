@@ -36,7 +36,7 @@ outputs:
     test:
       commands:
         - black --help
-  
+
   - name: {{ name }}d
     build:
       noarch: python
