@@ -1,5 +1,5 @@
-About black
-===========
+About black-recipe
+==================
 
 Home: https://github.com/python/black
 
@@ -36,10 +36,10 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-black-green.svg)](https://anaconda.org/conda-forge/black) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/black.svg)](https://anaconda.org/conda-forge/black) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/black.svg)](https://anaconda.org/conda-forge/black) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/black.svg)](https://anaconda.org/conda-forge/black) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-blackd-green.svg)](https://anaconda.org/conda-forge/blackd) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/blackd.svg)](https://anaconda.org/conda-forge/blackd) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/blackd.svg)](https://anaconda.org/conda-forge/blackd) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/blackd.svg)](https://anaconda.org/conda-forge/blackd) |
 
-Installing black
-================
+Installing black-recipe
+=======================
 
-Installing `black` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `black-recipe` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
@@ -96,17 +96,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating black-feedstock
-========================
+Updating black-recipe-feedstock
+===============================
 
-If you would like to improve the black recipe or build a new
+If you would like to improve the black-recipe recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/black-feedstock are
+Note that all branches in the conda-forge/black-recipe-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks and branches in the main repository should only be used to
 build distinct package versions.
