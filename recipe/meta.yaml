@@ -2,7 +2,7 @@
 {% set version = "19.10b0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name|lower }}-recipe
   version: {{ version }}
 
 source:
@@ -11,14 +11,14 @@ source:
 
 build:
   number: 3
-  noarch: python
-  entry_points:
-    - black = black:patched_main
-    - blackd = blackd:patched_main
 
 outputs:
   - name: {{ name }}
     script: build_base.sh
+    build:
+      noarch: python
+      entry_points:
+        - black = black:patched_main
     requirements:
       host:
         - python >=3.6
@@ -40,6 +40,8 @@ outputs:
   - name: {{ name }}d
     build:
       noarch: python
+      entry_points:
+        - blackd = blackd:patched_main
     requirements:
       run:
         - {{ pin_subpackage('black', exact=True) }}
