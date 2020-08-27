@@ -1,5 +1,5 @@
 {% set name = "black" %}
-{% set version = "19.10b0" %}
+{% set version = "20.8b1" %}
 
 package:
   name: {{ name|lower }}-recipe
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c2edb73a08e9e0e6f65a0e6af18b059b8b1cdd5bef997d7a0b181df93dc81539
+  sha256: 1c02557aa099101b9d21496f8a914e9ed2222ef70336404eeeac8edba836fbea
 
 build:
-  number: 4
+  number: 0
 
 outputs:
   - name: {{ name }}
@@ -21,15 +21,15 @@ outputs:
         - black = black:patched_main
     requirements:
       host:
-        - python >=3.6
+        - python
         - pip
         - setuptools_scm
       run:
-        - python >=3.6
-        - click >=6.5
+        - python
+        - click >=7.1.2
         - attrs >=18.1.0
         - appdirs
-        - toml >=0.9.4
+        - toml >=0.10.1
         - typed-ast >=1.4.0
         - regex
         - pathspec >=0.6,<1
@@ -49,7 +49,7 @@ outputs:
         - aiohttp-cors
     test:
       commands:
-        - black --help 
+        - black --help
         - blackd --help
 
 about:
@@ -64,8 +64,8 @@ about:
     to cease control over minutiae of hand-formatting. In return, Black gives
     you speed, determinism, and freedom from pycodestyle nagging about
     formatting. You will save time and mental energy for more important matters.
-  doc_url: https://github.com/python/black
-  dev_url: https://github.com/python/black
+  doc_url: https://github.com/psf/black
+  dev_url: https://github.com/psf/black
 
 extra:
   recipe-maintainers:
