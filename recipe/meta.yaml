@@ -26,13 +26,15 @@ outputs:
         - setuptools_scm
       run:
         - python
-        - click >=7.1.2
-        - attrs >=18.1.0
         - appdirs
+        - attrs >=18.1.0
+        - click >=7.1.2
+        - mypy_extensions >=0.4.3
+        - pathspec >=0.6,<1
+        - regex
         - toml >=0.10.1
         - typed-ast >=1.4.0
-        - regex
-        - pathspec >=0.6,<1
+        - typing_extensions >=3.7.4
     test:
       commands:
         - black --help
