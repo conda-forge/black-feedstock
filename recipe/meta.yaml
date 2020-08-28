@@ -39,7 +39,7 @@ outputs:
       commands:
         - black --help
 
-  - name: {{ name }}d
+  - name: {{ name }}-d
     build:
       noarch: python
       entry_points:
@@ -53,6 +53,17 @@ outputs:
       commands:
         - black --help
         - blackd --help
+  
+  - name: {{ name }}-colorama
+    build:
+      noarch: python
+    requirements:
+      run:
+        - {{ pin_subpackage('black', exact=True) }}
+        - colorama  >=0.4.3
+    test:
+      commands:
+        - black --help
 
 about:
   home: https://github.com/python/black
