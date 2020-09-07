@@ -10,7 +10,7 @@ source:
   sha256: 1c02557aa099101b9d21496f8a914e9ed2222ef70336404eeeac8edba836fbea
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: {{ name }}
@@ -27,8 +27,8 @@ outputs:
       run:
         - python >=3.6
         - appdirs
-        - attrs >=18.1.0
         - click >=7.1.2
+        - dataclasses >=0.6
         - mypy_extensions >=0.4.3
         - pathspec >=0.6,<1
         - regex
