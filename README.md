@@ -5,9 +5,13 @@ Home: https://github.com/python/black
 
 Package license: MIT
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/black-feedstock/blob/master/LICENSE.txt)
 
 Summary: The Uncompromising Code Formatter
+
+Development: https://github.com/psf/black
+
+Documentation: https://github.com/psf/black
 
 Black is the uncompromising Python code formatter. By using it, you agree
 to cease control over minutiae of hand-formatting. In return, Black gives
