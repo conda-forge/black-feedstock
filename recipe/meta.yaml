@@ -20,6 +20,9 @@ outputs:
       entry_points:
         - black = black:patched_main
     requirements:
+      build:
+        - python                                 # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
       host:
         - python >=3.6
         - pip
