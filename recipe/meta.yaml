@@ -1,5 +1,5 @@
 {% set name = "black" %}
-{% set version = "21.4b1" %}
+{% set version = "21.4b0" %}
 
 package:
   name: {{ name|lower }}-recipe
