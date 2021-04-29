@@ -19,6 +19,7 @@ outputs:
       noarch: python
       entry_points:
         - black = black:patched_main
+        - black-primer = black_primer.cli:main
     requirements:
       host:
         - python >=3.6
@@ -40,6 +41,7 @@ outputs:
         - pip
       commands:
         - black --help
+        - black-primer --help
         - pip check
 
   - name: {{ name }}d
@@ -55,6 +57,7 @@ outputs:
     test:
       commands:
         - black --help
+        - black-primer --help
         - blackd --help
   
   - name: {{ name }}-colorama
@@ -67,6 +70,7 @@ outputs:
     test:
       commands:
         - black --help
+        - black-primer --help
 
 about:
   home: https://github.com/python/black
