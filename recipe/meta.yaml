@@ -1,5 +1,5 @@
 {% set name = "black" %}
-{% set version = "21.5b1" %}
+{% set version = "21.5b2" %}
 
 package:
   name: {{ name|lower }}-recipe
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 23695358dbcb3deafe7f0a3ad89feee5999a46be5fec21f4f1d108be0bcdb3b1
+  sha256: a85cfc9d2295c0ae7172ad8b49823abb11627709ba1bd661ffb00f184da85280
 
 build:
   number: 0
@@ -52,7 +52,7 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage('black', exact=True) }}
-        - aiohttp >=3.6.9
+        - aiohttp >=3.6.0
         - aiohttp-cors >=0.4.0
     test:
       commands:
