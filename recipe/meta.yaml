@@ -1,5 +1,5 @@
 {% set name = "black" %}
-{% set version = "21.5b2" %}
+{% set version = "21.7b0" %}
 
 package:
   name: {{ name|lower }}-recipe
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 1fc0e0a2c8ae7d269dfcf0c60a89afa299664f3e811395d40b1922dff8f854b5
+  sha256: c8373c6491de9362e39271630b65b964607bc5c79c83783547d76c839b3aa219
 
 build:
   number: 0
@@ -33,7 +33,7 @@ outputs:
         - mypy_extensions >=0.4.3
         - pathspec >=0.8.1,<1
         - regex >=2020.1.8
-        - toml >=0.10.1
+        - tomli >=0.2.6,<2.0.0
         - typed-ast >=1.4.2
         - typing_extensions >=3.7.4
     test:
