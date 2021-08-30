@@ -1,5 +1,5 @@
 {% set name = "black" %}
-{% set version = "21.7b0" %}
+{% set version = "21.8b0" %}
 
 package:
   name: {{ name|lower }}-recipe
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c8373c6491de9362e39271630b65b964607bc5c79c83783547d76c839b3aa219
+  sha256: 570608d28aa3af1792b98c4a337dbac6367877b47b12b88ab42095cfc1a627c2
 
 build:
   number: 0
@@ -27,15 +27,15 @@ outputs:
         - setuptools_scm
       run:
         - python >=3.6
-        - appdirs
+        - platformdirs >=2
         - click >=7.1.2
         - dataclasses >=0.6
         - mypy_extensions >=0.4.3
-        - pathspec >=0.8.1,<1
+        - pathspec >=0.9,<1
         - regex >=2020.1.8
         - tomli >=0.2.6,<2.0.0
         - typed-ast >=1.4.2
-        - typing_extensions >=3.7.4
+        - typing_extensions >=3.10,!=3.10.0.1
     test:
       requires:
         - pip
@@ -59,7 +59,7 @@ outputs:
         - black --help
         - black-primer --help
         - blackd --help
-  
+
   - name: {{ name }}-colorama
     build:
       noarch: python
@@ -77,7 +77,7 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: 'The Uncompromising Code Formatter'
+  summary: The Uncompromising Code Formatter
 
   description: |
     Black is the uncompromising Python code formatter. By using it, you agree
