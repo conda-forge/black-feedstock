@@ -27,15 +27,15 @@ outputs:
         - setuptools_scm
       run:
         - python >=3.6
-        - appdirs
+        - platformdirs >=2
         - click >=7.1.2
         - dataclasses >=0.6
         - mypy_extensions >=0.4.3
-        - pathspec >=0.8.1,<1
+        - pathspec >=0.9,<1
         - regex >=2020.1.8
         - tomli >=0.2.6,<2.0.0
         - typed-ast >=1.4.2
-        - typing_extensions >=3.7.4
+        - typing_extensions >=3.10,!=3.10.0.1
     test:
       requires:
         - pip
