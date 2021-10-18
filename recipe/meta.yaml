@@ -83,7 +83,7 @@ outputs:
     test:
       commands:
         - black --help
-        - black-primer --help
+        - python -c 'import black.handle_ipynb_magics; assert black.handle_ipynb_magics. jupyter_dependencies_are_installed() == True'
 
 about:
   home: https://github.com/python/black
