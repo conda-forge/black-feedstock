@@ -72,7 +72,7 @@ outputs:
         - black --help
         - black-primer --help
         
- - name: {{ name }}-jupyter
+  - name: {{ name }}-jupyter
     build:
       noarch: python
     requirements:
