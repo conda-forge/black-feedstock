@@ -71,6 +71,19 @@ outputs:
       commands:
         - black --help
         - black-primer --help
+        
+ - name: {{ name }}-jupyter
+    build:
+      noarch: python
+    requirements:
+      run:
+        - {{ pin_subpackage('black', exact=True) }}
+        - ipython >=7.8.0
+        - tokenize-rt >=3.2.0
+    test:
+      commands:
+        - black --help
+        - black-primer --help
 
 about:
   home: https://github.com/python/black
