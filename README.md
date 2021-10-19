@@ -39,6 +39,7 @@ Current release info
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-black-green.svg)](https://anaconda.org/conda-forge/black) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/black.svg)](https://anaconda.org/conda-forge/black) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/black.svg)](https://anaconda.org/conda-forge/black) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/black.svg)](https://anaconda.org/conda-forge/black) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-black--colorama-green.svg)](https://anaconda.org/conda-forge/black-colorama) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/black-colorama.svg)](https://anaconda.org/conda-forge/black-colorama) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/black-colorama.svg)](https://anaconda.org/conda-forge/black-colorama) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/black-colorama.svg)](https://anaconda.org/conda-forge/black-colorama) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-black--jupyter-green.svg)](https://anaconda.org/conda-forge/black-jupyter) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/black-jupyter.svg)](https://anaconda.org/conda-forge/black-jupyter) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/black-jupyter.svg)](https://anaconda.org/conda-forge/black-jupyter) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/black-jupyter.svg)](https://anaconda.org/conda-forge/black-jupyter) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-blackd-green.svg)](https://anaconda.org/conda-forge/blackd) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/blackd.svg)](https://anaconda.org/conda-forge/blackd) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/blackd.svg)](https://anaconda.org/conda-forge/blackd) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/blackd.svg)](https://anaconda.org/conda-forge/blackd) |
 
 Installing black-recipe
@@ -51,10 +52,10 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `black, black-colorama, blackd` can be installed with:
+Once the `conda-forge` channel has been enabled, `black, black-colorama, black-jupyter, blackd` can be installed with:
 
 ```
-conda install black black-colorama blackd
+conda install black black-colorama black-jupyter blackd
 ```
 
 It is possible to list all of the versions of `black` available on your platform with:
