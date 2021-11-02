@@ -1,5 +1,5 @@
 {% set name = "black" %}
-{% set version = "21.9b0" %}
+{% set version = "21.10b0" %}
 
 package:
   name: {{ name|lower }}-recipe
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 7de4cfc7eb6b710de325712d40125689101d21d25283eed7e9998722cf10eb91
+  sha256: a9952229092e325fe5f3dae56d81f639b23f7131eb840781947e4b2886030f33
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - name: {{ name }}
@@ -52,7 +52,7 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage('black', exact=True) }}
-        - aiohttp >=3.6.0
+        - aiohttp >=3.7.4
         - aiohttp-cors >=0.4.0
     test:
       commands:
@@ -71,7 +71,7 @@ outputs:
       commands:
         - black --help
         - black-primer --help
-        
+
   - name: {{ name }}-jupyter
     build:
       noarch: python
