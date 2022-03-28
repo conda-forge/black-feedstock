@@ -1,5 +1,5 @@
 {% set name = "black" %}
-{% set version = "22.1.0" %}
+{% set version = "22.3.0" %}
 
 package:
   name: {{ name|lower }}-recipe
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: a7c0192d35635f6fc1174be575cb7915e92e5dd629ee79fdaf0dcfa41a80afb5
+  sha256: 35020b8886c022ced9282b51b5a875b6d1ab0c387b31a065b84db7c33085ca79
 
 build:
   number: 0
@@ -19,7 +19,6 @@ outputs:
       noarch: python
       entry_points:
         - black = black:patched_main
-        - black-primer = black_primer.cli:main
     requirements:
       host:
         - python >=3.6
@@ -40,7 +39,6 @@ outputs:
         - pip
       commands:
         - black --help
-        - black-primer --help
         - pip check
 
   - name: {{ name }}d
@@ -56,7 +54,6 @@ outputs:
     test:
       commands:
         - black --help
-        - black-primer --help
         - blackd --help
 
   - name: {{ name }}-colorama
@@ -69,7 +66,6 @@ outputs:
     test:
       commands:
         - black --help
-        - black-primer --help
 
   - name: {{ name }}-jupyter
     build:
@@ -85,18 +81,18 @@ outputs:
         - python -c 'import black.handle_ipynb_magics; assert black.handle_ipynb_magics.jupyter_dependencies_are_installed(verbose=True, quiet=False) == True'
 
 about:
-  home: https://github.com/python/black
+  home: https://github.com/psf/black
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: The Uncompromising Code Formatter
+  summary: The uncompromising code formatter.
 
   description: |
     Black is the uncompromising Python code formatter. By using it, you agree
     to cease control over minutiae of hand-formatting. In return, Black gives
     you speed, determinism, and freedom from pycodestyle nagging about
     formatting. You will save time and mental energy for more important matters.
-  doc_url: https://github.com/psf/black
+  doc_url: https://black.readthedocs.io/
   dev_url: https://github.com/psf/black
 
 extra:
