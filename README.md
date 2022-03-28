@@ -1,17 +1,17 @@
 About black-recipe
 ==================
 
-Home: https://github.com/python/black
+Home: https://github.com/psf/black
 
 Package license: MIT
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/black-feedstock/blob/main/LICENSE.txt)
 
-Summary: The Uncompromising Code Formatter
+Summary: The uncompromising code formatter.
 
 Development: https://github.com/psf/black
 
-Documentation: https://github.com/psf/black
+Documentation: https://black.readthedocs.io/
 
 Black is the uncompromising Python code formatter. By using it, you agree
 to cease control over minutiae of hand-formatting. In return, Black gives
