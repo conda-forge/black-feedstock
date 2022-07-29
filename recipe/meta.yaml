@@ -50,7 +50,6 @@ outputs:
       run:
         - {{ pin_subpackage('black', exact=True) }}
         - aiohttp >=3.7.4
-        - aiohttp-cors >=0.4.0
     test:
       commands:
         - black --help
