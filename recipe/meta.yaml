@@ -1,6 +1,6 @@
 {% set name = "black" %}
-{% set version = "19.10b0" %}
-{% set sha256 = "c2edb73a08e9e0e6f65a0e6af18b059b8b1cdd5bef997d7a0b181df93dc81539" %}
+{% set version = "0.22.6" %}
+{% set sha256 = "6c6d39e28aed379aec40da1c65434c77d75e65bb59a1e1c283de545fb4e7c6c9" %}
 
 package:
   name: {{ name|lower }}
@@ -11,7 +11,6 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  noarch: python
   number: 0
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
   entry_points:
@@ -19,14 +18,17 @@ build:
 
 requirements:
   host:
-    - python >=3.6
+    - python
     - pip
   run:
-    - python >=3.6
-    - click >=6.5
-    - attrs >=18.1.0
-    - appdirs
-    - toml >=0.9.4
+    - python
+    - click >=8.0.0
+    - platformdirs >=2
+    - tomli >=1.1.0 #[<py311]
+    - typed-ast >=1.4.2 #[<py38]              #No support for 37?k
+    - pathspec >=0.9.0                        #LAST VERSION is 0.7.0
+    - typing_extensions >=3.10.0.0 #[<py310]
+    - mypy_extensions >=0.4.3                 #NON EXISTENT in main
 
 test:
   commands:
