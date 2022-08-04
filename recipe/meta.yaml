@@ -20,6 +20,9 @@ requirements:
   host:
     - python
     - pip
+    - setuptools >=45.0
+    - setuptools_scm[toml] >=6.3.1
+    - wheel
   run:
     - python
     - click >=8.0.0
