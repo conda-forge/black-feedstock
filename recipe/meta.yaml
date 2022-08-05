@@ -24,7 +24,6 @@ outputs:
         - python
         - pip
         - setuptools_scm
-        - typed-ast >=1.4.2  # [py<38 and python_impl == 'cpython']
       run:
         - python
         - click >=8.0.0
