@@ -47,7 +47,6 @@ outputs:
         - black --help
 
   - name: {{ name }}d
-    script: "{{ PYTHON }} -m pip install . --no-deps -vv"
     build:
       entry_points:
         - blackd = blackd:patched_main
