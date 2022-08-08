@@ -49,7 +49,7 @@ about:
     to cease control over minutiae of hand-formatting. In return, Black gives
     you speed, determinism, and freedom from pycodestyle nagging about
     formatting. You will save time and mental energy for more important matters.
-  doc_url: https://github.com/psf/black
+  doc_url: https://black.readthedocs.io/
   dev_url: https://github.com/psf/black
 
 extra:
