@@ -17,7 +17,7 @@ outputs:
   - name: {{ name }}
     build:
       skip: True # [py<36]
-      script: python -m pip install --ignore-installed --no-deps -vv .
+      script: "{{ PYTHON }} -m pip install --ignore-installed --no-deps -vv ."
       entry_points:
         - black = black:patched_main
 
