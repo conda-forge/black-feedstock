@@ -3,7 +3,7 @@
 {% set sha256 = "6c6d39e28aed379aec40da1c65434c77d75e65bb59a1e1c283de545fb4e7c6c9" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name|lower }}-recipe
   version: {{ version }}
 
 source:
@@ -15,9 +15,9 @@ build:
 
 outputs:
   - name: {{ name }}
-    script: "{{ PYTHON }} -m pip install . --no-deps -vv"
     build:
       skip: True # [py<36]
+      script: python -m pip install --ignore-installed --no-deps -vv .
       entry_points:
         - black = black:patched_main
 
