@@ -12,54 +12,37 @@ source:
 
 build:
   number: 0
+  skip: True # [py<36]
+  script: "{{ PYTHON }} -m pip install --ignore-installed --no-deps -vv ."
+  entry_points:
+    - black = black:patched_main
+    - blackd = blackd:patched_main
 
-outputs:
-  - name: {{ name }}
-    build:
-      skip: True # [py<36]
-      script: "{{ PYTHON }} -m pip install --ignore-installed --no-deps -vv ."
-      entry_points:
-        - black = black:patched_main
+requirements:
+  host:
+    - python
+    - pip
+    - setuptools >=45.0
+    - setuptools_scm[toml] >=6.3.1
+    - wheel
+  run:
+    - python
+    - click >=8.0.0
+    - platformdirs >=2
+    - tomli >=1.1.0 # [py<311]
+    - typed-ast >=1.4.2 # [py<38]
+    - pathspec >=0.9.0
+    - typing_extensions >=3.10.0.0 # [py<310]
+    - mypy_extensions >=0.4.3
+  run_constrained:
+    - colorama >=0.4.3
+    - uvloop >=0.15.2
+    - aiohttp >=3.7.4
 
-    requirements:
-      host:
-        - python
-        - pip
-        - setuptools >=45.0
-        - setuptools_scm[toml] >=6.3.1
-        - wheel
-      run:
-        - python
-        - click >=8.0.0
-        - platformdirs >=2
-        - tomli >=1.1.0 # [py<311]
-        - typed-ast >=1.4.2 # [py<38]
-        - pathspec >=0.9.0
-        - typing_extensions >=3.10.0.0 # [py<310]
-        - mypy_extensions >=0.4.3
-      run_constrained:
-        - colorama >=0.4.3
-        - uvloop >=0.15.2
-
-    test:
-      commands:
-        - pip check
-        - black --help
-
-  - name: {{ name }}d
-    build:
-      entry_points:
-        - blackd = blackd:patched_main
-
-    requirements:
-      run:
-        - {{ pin_subpackage('black', max_pin='x.x.x') }}
-        - aiohttp >=3.7.4
-
-    test:
-      commands:
-        - black --help
-        - blackd --help
+test:
+  commands:
+    - pip check
+    - black --help
 
 about:
   home: https://github.com/psf/black
