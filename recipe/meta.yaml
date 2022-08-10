@@ -40,6 +40,9 @@ requirements:
     - aiohttp >=3.7.4
 
 test:
+  requires:
+    - python
+    - pip
   commands:
     - black --help
     - pip check
