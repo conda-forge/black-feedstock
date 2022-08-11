@@ -1,6 +1,6 @@
 {% set name = "black" %}
-{% set version = "19.10b0" %}
-{% set sha256 = "c2edb73a08e9e0e6f65a0e6af18b059b8b1cdd5bef997d7a0b181df93dc81539" %}
+{% set version = "22.6.0" %}
+{% set sha256 = "6c6d39e28aed379aec40da1c65434c77d75e65bb59a1e1c283de545fb4e7c6c9" %}
 
 package:
   name: {{ name|lower }}
@@ -11,29 +11,46 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  skip: True # [py<36]
+  script: "{{ PYTHON }} -m pip install --no-deps -vv ."
   entry_points:
-    - black = black:main
+    - black = black:patched_main
+    - blackd = blackd:patched_main
 
 requirements:
   host:
-    - python >=3.6
+    - python
     - pip
+    - setuptools >=45.0
+    - setuptools_scm[toml] >=6.3.1
+    - wheel
   run:
-    - python >=3.6
-    - click >=6.5
-    - attrs >=18.1.0
-    - appdirs
-    - toml >=0.9.4
-
+    - python
+    - click >=8.0.0
+    - dataclasses >=0.6  # [py<37]
+    - platformdirs >=2
+    - tomli >=1.1.0 # [py<311]
+    - typed-ast >=1.4.2 # [py<38]
+    - pathspec >=0.9.0
+    - typing_extensions >=3.10.0.0 # [py<310]
+    - mypy_extensions >=0.4.3
+  run_constrained:
+    - aiohttp >=3.7.4 # for blackd
+    - colorama >=0.4.3 # for colorama extra
+    - uvloop >=0.15.2 # for uvloop extra
+    # - ipython >=7.8.0 # for jupyter extra
+    # - tokenize-rt >=3.2.0 for jupyter extra (not in conda defaults currently)
 test:
+  requires:
+    - python
+    - pip
   commands:
     - black --help
+    - pip check
 
 about:
-  home: https://github.com/python/black
+  home: https://github.com/psf/black
   license: MIT
   license_family: MIT
   license_file: LICENSE
@@ -44,8 +61,8 @@ about:
     to cease control over minutiae of hand-formatting. In return, Black gives
     you speed, determinism, and freedom from pycodestyle nagging about
     formatting. You will save time and mental energy for more important matters.
-  doc_url: https://github.com/python/black
-  dev_url: https://github.com/python/black
+  doc_url: https://black.readthedocs.io/en/stable/
+  dev_url: https://github.com/psf/black
 
 extra:
   recipe-maintainers:
