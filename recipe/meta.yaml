@@ -48,6 +48,8 @@ outputs:
   - name: {{ name }}d
     build:
       noarch: python
+      # Skip this package for cross-builds. We will only need a single upload anyways
+      skip: true  # [not linux64]
       entry_points:
         - blackd = blackd:patched_main
     requirements:
@@ -62,6 +64,8 @@ outputs:
   - name: {{ name }}-colorama
     build:
       noarch: python
+      # Skip this package for cross-builds. We will only need a single upload anyways
+      skip: true  # [not linux64]
     requirements:
       run:
         - {{ pin_subpackage('black', max_pin='x.x.x') }}
@@ -73,6 +77,8 @@ outputs:
   - name: {{ name }}-jupyter
     build:
       noarch: python
+      # Skip this package for cross-builds. We will only need a single upload anyways
+      skip: true  # [not linux64]
     requirements:
       run:
         - {{ pin_subpackage('black', max_pin='x.x.x') }}
