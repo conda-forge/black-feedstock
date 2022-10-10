@@ -1,5 +1,5 @@
 {% set name = "black" %}
-{% set version = "22.8.0" %}
+{% set version = "22.10.0" %}
 
 package:
   name: {{ name|lower }}-recipe
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 792f7eb540ba9a17e8656538701d3eb1afcb134e3b45b71f20b25c77a8db7e6e
+  sha256: f513588da599943e0cde4e32cc9879e825d58720d6557062d1098c5ad80080e1
 
 build:
   number: 0
@@ -20,10 +20,15 @@ outputs:
       entry_points:
         - black = black:patched_main
     requirements:
+      build:
+        - python                                 # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
       host:
         - python
         - pip
-        - setuptools_scm
+        - hatchling>=1.8.0
+        - hatch-vcs
+        - hatch-fancy-pypi-readme
       run:
         - python
         - click >=8.0.0
@@ -31,7 +36,6 @@ outputs:
         - tomli >=1.1.0  # [py<311]
         - typed-ast >=1.4.2  # [py<38]
         - pathspec >=0.9
-        - dataclasses >=0.6  # [py<37]
         - typing_extensions >=3.10  # [py<310]
         - mypy_extensions >=0.4.3
     test:
@@ -44,6 +48,8 @@ outputs:
   - name: {{ name }}d
     build:
       noarch: python
+      # Skip this package for cross-builds. We will only need a single upload anyways
+      skip: true  # [not linux64]
       entry_points:
         - blackd = blackd:patched_main
     requirements:
@@ -58,6 +64,8 @@ outputs:
   - name: {{ name }}-colorama
     build:
       noarch: python
+      # Skip this package for cross-builds. We will only need a single upload anyways
+      skip: true  # [not linux64]
     requirements:
       run:
         - {{ pin_subpackage('black', max_pin='x.x.x') }}
@@ -69,6 +77,8 @@ outputs:
   - name: {{ name }}-jupyter
     build:
       noarch: python
+      # Skip this package for cross-builds. We will only need a single upload anyways
+      skip: true  # [not linux64]
     requirements:
       run:
         - {{ pin_subpackage('black', max_pin='x.x.x') }}
