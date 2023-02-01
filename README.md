@@ -409,6 +409,7 @@ Feedstock Maintainers
 * [@ambv](https://github.com/ambv/)
 * [@carlodri](https://github.com/carlodri/)
 * [@mariusvniekerk](https://github.com/mariusvniekerk/)
+* [@raybellwaves](https://github.com/raybellwaves/)
 * [@seanlaw](https://github.com/seanlaw/)
 * [@xhochy](https://github.com/xhochy/)
 

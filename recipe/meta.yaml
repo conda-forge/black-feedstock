@@ -1,5 +1,5 @@
 {% set name = "black" %}
-{% set version = "22.12.0" %}
+{% set version = "23.1.0" %}
 
 package:
   name: {{ name|lower }}-recipe
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 229351e5a18ca30f447bf724d007f890f97e13af070bb6ad4c0a441cd7596a2f
+  sha256: b0bd97bea8903f5a2ba7219257a44e3f1f9d00073d6cc1add68f0beec69692ac
 
 build:
   number: 0
@@ -33,6 +33,7 @@ outputs:
         - python
         - click >=8.0.0
         - platformdirs >=2
+        - packaging >=22.0
         - tomli >=1.1.0  # [py<311]
         - typed-ast >=1.4.2  # [py<38]
         - pathspec >=0.9
