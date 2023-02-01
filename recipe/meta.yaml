@@ -33,6 +33,7 @@ outputs:
         - python
         - click >=8.0.0
         - platformdirs >=2
+        - packaging >=22.0
         - tomli >=1.1.0  # [py<311]
         - typed-ast >=1.4.2  # [py<38]
         - pathspec >=0.9
