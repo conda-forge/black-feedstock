@@ -48,6 +48,8 @@ requirements:
     # - ipython >=7.8.0 # for jupyter extra
     # - tokenize-rt >=3.2.0 for jupyter extra (not in conda defaults currently)
 test:
+  imports:
+    - black
   requires:
     - python
     - pip
