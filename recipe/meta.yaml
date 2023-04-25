@@ -10,7 +10,7 @@ source:
   sha256: 1c7b8d606e728a41ea1ccbd7264677e494e87cf630e399262ced92d4a8dac940
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: {{ name }}
@@ -19,6 +19,7 @@ outputs:
       skip: true  # [py<36]
       entry_points:
         - black = black:patched_main
+        - blackd = blackd:patched_main
     requirements:
       build:
         - python                                 # [build_platform != target_platform]
@@ -51,8 +52,6 @@ outputs:
       noarch: python
       # Skip this package for cross-builds. We will only need a single upload anyways
       skip: true  # [not linux64]
-      entry_points:
-        - blackd = blackd:patched_main
     requirements:
       run:
         - {{ pin_subpackage('black', max_pin='x.x.x') }}
