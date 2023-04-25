@@ -46,6 +46,7 @@ outputs:
       commands:
         - black --help
         - pip check
+        - which blackd || where blackd
 
   - name: {{ name }}d
     build:
