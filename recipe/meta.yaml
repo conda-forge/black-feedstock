@@ -1,5 +1,5 @@
 {% set name = "black" %}
-{% set version = "23.3.0" %}
+{% set version = "23.7.0" %}
 
 package:
   name: {{ name|lower }}-recipe
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 1c7b8d606e728a41ea1ccbd7264677e494e87cf630e399262ced92d4a8dac940
+  sha256: 022a582720b0d9480ed82576c920a8c1dde97cc38ff11d8d8859b3bd6ca9eedb
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - name: {{ name }}
