@@ -27,7 +27,7 @@ outputs:
       host:
         - python
         - pip
-        - hatchling>=1.8.0
+        - hatchling >=1.8.0
         - hatch-vcs
         - hatch-fancy-pypi-readme
       run:
@@ -36,9 +36,8 @@ outputs:
         - platformdirs >=2
         - packaging >=22.0
         - tomli >=1.1.0  # [py<311]
-        - typed-ast >=1.4.2  # [py<38]
         - pathspec >=0.9
-        - typing_extensions >=3.10  # [py<310]
+        - typing_extensions >=4.0.1  # [py<310]
         - mypy_extensions >=0.4.3
     test:
       requires:
@@ -88,7 +87,7 @@ outputs:
     test:
       commands:
         - black --help
-        - python -c "import black.handle_ipynb_magics; assert black.handle_ipynb_magics.jupyter_dependencies_are_installed(verbose=True, quiet=False) == True"
+        - python -c "import black.handle_ipynb_magics; assert black.handle_ipynb_magics.jupyter_dependencies_are_installed() == True"
 
 about:
   home: https://github.com/psf/black
