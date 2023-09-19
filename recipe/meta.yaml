@@ -16,23 +16,21 @@ outputs:
   - name: {{ name }}
     script: build_base.sh
     build:
-      skip: true  # [py<36]
-      skip: true  # [not linux]
       entry_points:
         - black = black:patched_main
         - blackd = blackd:patched_main
     requirements:
       build:
-        - python                                 # [build_platform != target_platform]
+        - python  >=3.11                         # [build_platform != target_platform]
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
       host:
-        - python
+        - python >=3.11
         - pip
         - hatchling >=1.8.0
         - hatch-vcs
         - hatch-fancy-pypi-readme
       run:
-        - python
+        - python >=3.11
         - click >=8.0.0
         - platformdirs >=2
         - packaging >=22.0

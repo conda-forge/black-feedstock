@@ -40,4 +40,4 @@ numpy:
 python_impl:
   - cpython
 channel_sources:
-  - https://repo.prefix.dev/py312-migration,conda-forge/label/python_rc,conda-forge
+  - https://repo.prefix.dev/py312-migration2,conda-forge/label/python_rc,conda-forge
