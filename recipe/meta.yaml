@@ -17,6 +17,7 @@ outputs:
     script: build_base.sh
     build:
       skip: true  # [py<36]
+      skip: true  # [not linux]
       entry_points:
         - black = black:patched_main
         - blackd = blackd:patched_main
