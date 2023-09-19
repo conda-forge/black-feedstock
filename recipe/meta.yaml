@@ -21,16 +21,16 @@ outputs:
         - blackd = blackd:patched_main
     requirements:
       build:
-        - python  >=3.11                         # [build_platform != target_platform]
+        - python                              # [build_platform != target_platform]
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
       host:
-        - python >=3.11
+        - python
         - pip
         - hatchling >=1.8.0
         - hatch-vcs
         - hatch-fancy-pypi-readme
       run:
-        - python >=3.11
+        - python
         - click >=8.0.0
         - platformdirs >=2
         - packaging >=22.0
