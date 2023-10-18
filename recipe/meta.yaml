@@ -37,7 +37,7 @@ outputs:
         - packaging >=22.0
         - tomli >=1.1.0  # [py<311]
         - pathspec >=0.9
-        - typing_extensions >=4.0.1  # [py<310]
+        - typing_extensions >=4.0.1  # [py<311]
         - mypy_extensions >=0.4.3
     test:
       requires:
