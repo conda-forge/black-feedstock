@@ -18,7 +18,7 @@ build:
   script: {{ PYTHON }} -m pip install --no-deps --no-build-isolation -vv .
   entry_points:
     - black = black:patched_main
-    - blackd = "blackd:patched_main [d]"
+    - blackd = blackd:patched_main [d]
 
 requirements:
   build:
