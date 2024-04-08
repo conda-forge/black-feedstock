@@ -1,6 +1,6 @@
 {% set name = "black" %}
-{% set version = "23.11.0" %}
-{% set sha256 = "4c68855825ff432d197229846f971bc4d6666ce90492e5b02013bcaca4d9ab05" %}
+{% set version = "24.3.0" %}
+{% set sha256 = "a0c9c4a0771afc6919578cec71ce82a3e31e054904e7197deacbc9382671c41f" %}
 
 package:
   name: {{ name|lower }}
@@ -28,7 +28,7 @@ requirements:
   host:
     - python
     - pip
-    - hatchling >=1.8.0
+    - hatchling >=1.20.0
     - hatch-vcs
     - wheel
   run:
@@ -68,7 +68,7 @@ about:
     to cease control over minutiae of hand-formatting. In return, Black gives
     you speed, determinism, and freedom from pycodestyle nagging about
     formatting. You will save time and mental energy for more important matters.
-  doc_url: https://black.readthedocs.io/en/stable/
+  doc_url: https://black.readthedocs.io
   dev_url: https://github.com/psf/black
 
 extra:
