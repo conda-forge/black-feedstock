@@ -55,7 +55,7 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage('black', max_pin='x.x.x') }}
-        - aiohttp >=3.7.4
+        - aiohttp >=3.10
     test:
       commands:
         - black --help
