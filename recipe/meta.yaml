@@ -6,11 +6,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 846ea64c97afe3bc677b761787993be4991810ecc7a4a937816dd6bddedc4875
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: {{ name }}
@@ -57,6 +57,8 @@ outputs:
         - {{ pin_subpackage('black', max_pin='x.x.x') }}
         - aiohttp >=3.10
     test:
+      requires:
+        - python {{ python_min }}
       commands:
         - black --help
         - blackd --help
@@ -71,6 +73,8 @@ outputs:
         - {{ pin_subpackage('black', max_pin='x.x.x') }}
         - colorama  >=0.4.3
     test:
+      requires:
+        - python {{ python_min }}
       commands:
         - black --help
 
@@ -85,6 +89,8 @@ outputs:
         - ipython >=7.8.0
         - tokenize-rt >=3.2.0
     test:
+      requires:
+        - python {{ python_min }}
       commands:
         - black --help
         - python -c "import black.handle_ipynb_magics; assert black.handle_ipynb_magics.jupyter_dependencies_are_installed(warn=True) == True"
