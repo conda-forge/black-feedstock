@@ -1,13 +1,13 @@
 {% set name = "black" %}
-{% set version = "24.10.0" %}
+{% set version = "25.1.0" %}
 
 package:
   name: {{ name|lower }}-recipe
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 846ea64c97afe3bc677b761787993be4991810ecc7a4a937816dd6bddedc4875
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 33496d5cd1222ad73391352b4ae8da15253c5de89b93a80b3e2c8d9a19ec2666
 
 build:
   number: 0
