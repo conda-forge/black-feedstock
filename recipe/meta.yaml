@@ -2,89 +2,93 @@
 {% set version = "25.1.0" %}
 
 package:
-  name: {{ name|lower }}-recipe
+  name: black-recipe
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/b/black/black-{{ version }}.tar.gz
   sha256: 33496d5cd1222ad73391352b4ae8da15253c5de89b93a80b3e2c8d9a19ec2666
 
 build:
   number: 0
 
 outputs:
-  - name: {{ name }}
+  - name: black
     script: build_base.sh
     build:
-      skip: true  # [py<36]
+      noarch: python
       entry_points:
         - black = black:patched_main
         - blackd = blackd:patched_main
     requirements:
-      build:
-        - python                                 # [build_platform != target_platform]
-        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
       host:
-        - python
+        - python >=3.11                     # [not py_lt_311]
+        - python {{ python_min }}           # [py_lt_311]
         - pip
         - hatchling >=1.8.0
         - hatch-vcs
         - hatch-fancy-pypi-readme
       run:
-        - python
         - click >=8.0.0
         - platformdirs >=2
         - packaging >=22.0
-        - tomli >=1.1.0  # [py<311]
         - pathspec >=0.9
-        - typing_extensions >=4.0.1  # [py<311]
         - mypy_extensions >=0.4.3
+        - tomli >=1.1.0                     # [py_lt_311]
+        - typing_extensions >=4.0.1         # [py_lt_311]
+        - python >={{ python_min }},<3.11   # [py_lt_311]
+        - python >=3.11                     # [not py_lt_311]
     test:
       requires:
+        - python {{ python_min }}           # [py_lt_311]
+        - python 3.11                       # [not py_lt_311]
         - pip
       commands:
         - black --help
         - pip check
         - which blackd || where blackd
 
-  - name: {{ name }}d
+  - name: blackd
     build:
-      noarch: python
-      # Skip this package for cross-builds. We will only need a single upload anyways
-      skip: true  # [not linux64]
+      noarch: generic
     requirements:
       run:
         - {{ pin_subpackage('black', max_pin='x.x.x') }}
         - aiohttp >=3.10
     test:
+      requires:
+        - python {{ python_min }}    # [py_lt_311]
+        - python 3.11                # [not py_lt_311]
       commands:
         - black --help
         - blackd --help
 
-  - name: {{ name }}-colorama
+  - name: black-colorama
     build:
-      noarch: python
-      # Skip this package for cross-builds. We will only need a single upload anyways
-      skip: true  # [not linux64]
+      noarch: generic
     requirements:
       run:
         - {{ pin_subpackage('black', max_pin='x.x.x') }}
-        - colorama  >=0.4.3
+        - colorama >=0.4.3
     test:
+      requires:
+        - python {{ python_min }}    # [py_lt_311]
+        - python 3.11                # [not py_lt_311]
       commands:
         - black --help
 
-  - name: {{ name }}-jupyter
+  - name: black-jupyter
     build:
-      noarch: python
-      # Skip this package for cross-builds. We will only need a single upload anyways
-      skip: true  # [not linux64]
+      noarch: generic
     requirements:
       run:
         - {{ pin_subpackage('black', max_pin='x.x.x') }}
         - ipython >=7.8.0
         - tokenize-rt >=3.2.0
     test:
+      requires:
+        - python {{ python_min }}    # [py_lt_311]
+        - python 3.11                # [not py_lt_311]
       commands:
         - black --help
         - python -c "import black.handle_ipynb_magics; assert black.handle_ipynb_magics.jupyter_dependencies_are_installed(warn=True) == True"
