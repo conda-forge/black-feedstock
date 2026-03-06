@@ -1,5 +1,5 @@
 {% set name = "black" %}
-{% set version = "26.1.0" %}
+{% set version = "26.3.0" %}
 
 package:
   name: black-recipe
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/b/black/black-{{ version }}.tar.gz
-  sha256: d294ac3340eef9c9eb5d29288e96dc719ff269a88e27b396340459dd85da4c58
+  sha256: 4d438dfdba1c807c6c7c63c4f15794dda0820d2222e7c4105042ac9ddfc5dd0b
 
 build:
   number: 0
