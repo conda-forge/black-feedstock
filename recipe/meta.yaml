@@ -26,7 +26,7 @@ outputs:
         - python {{ python_min }}           # [py_lt_311]
         - pip
         - hatchling >=1.27.0
-        - hatch-vcs
+        - hatch-vcs >=0.3.0
         - hatch-fancy-pypi-readme
       run:
         - click >=8.0.0
@@ -34,7 +34,7 @@ outputs:
         - packaging >=22.0
         - pathspec >=0.9
         - mypy_extensions >=0.4.3
-        - pytokens >=0.3
+        - pytokens >=0.4
         - tomli >=1.1.0                     # [py_lt_311]
         - typing_extensions >=4.0.1         # [py_lt_311]
         - python >={{ python_min }},<3.11   # [py_lt_311]
