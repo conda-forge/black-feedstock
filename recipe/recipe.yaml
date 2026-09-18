@@ -1,0 +1,138 @@
+schema_version: 1
+
+context:
+  version: 26.5.1
+  mypyc_version: 2.3.1
+
+recipe:
+  name: black-recipe
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/b/black/black-${{ version }}.tar.gz
+  sha256: dd321f668053961824bcc1be1cc1df748b2d7e4fa28086b08331e577b0100a73
+
+build:
+  number: 1
+  skip: is_abi3 and not is_python_min
+  python:
+    version_independent: ${{ is_abi3 }}
+
+
+outputs:
+  - package:
+      name: black
+    build:
+      script: HATCH_VERBOSE=3 HATCH_BUILD_HOOKS_ENABLE=1 ${{ PYTHON }} -m pip install . -vv
+      python:
+        entry_points:
+          - black = black:patched_main
+          - blackd = blackd:patched_main
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - if: build_platform != host_platform
+          then:
+            - python
+            - cross-python_${{ host_platform }}
+            - mypyc ==${{ mypyc_version }} # for a usable python-librt
+      host:
+        - if: is_abi3
+          then: python-abi3
+        - python
+        - pip
+        - hatchling >=1.27.0
+        - hatch-vcs >=0.3.0
+        - hatch-mypyc >=0.16.0
+        - mypyc ==${{ mypyc_version }}
+        - hatch-fancy-pypi-readme
+      run:
+        - click >=8.0.0
+        - platformdirs >=2
+        - packaging >=22.0
+        - pathspec >=0.9
+        - mypy_extensions >=0.4.3
+        - pytokens >=0.4
+    tests:
+      - python:
+          imports:
+            - black
+          python_version:
+            - if: is_abi3
+              then: ${{ python_min }}.*
+            - "*"
+      - if: is_abi3
+        then:
+          requirements:
+            run:
+              - abi3audit
+          script:
+            - if: unix
+              then: abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} $(find $SP_DIR/black -name *.so)
+              else: abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} %SP_DIR%/black/*.pyd
+      - script:
+          - black --help
+          - which blackd || where blackd
+
+  - package:
+      name: blackd
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage('black', upper_bound='x.x.x') }}
+        - aiohttp >=3.10
+    tests:
+      - script:
+          - black --help
+          - blackd --help
+
+  - package:
+      name: black-colorama
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage('black', upper_bound='x.x.x') }}
+        - colorama >=0.4.3
+    tests:
+      - script:
+          - black --help
+
+  - package:
+      name: black-jupyter
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage('black', upper_bound='x.x.x') }}
+        - ipython >=7.8.0
+        - tokenize-rt >=3.2.0
+    tests:
+      - script:
+          - black --help
+          - python -c "import black.handle_ipynb_magics; assert black.handle_ipynb_magics.jupyter_dependencies_are_installed(warn=True) == True"
+
+about:
+  homepage: https://github.com/psf/black
+  license: MIT
+  license_file: LICENSE
+  summary: The uncompromising code formatter.
+
+  description: |
+    Black is the uncompromising Python code formatter. By using it, you agree
+    to cease control over minutiae of hand-formatting. In return, Black gives
+    you speed, determinism, and freedom from pycodestyle nagging about
+    formatting. You will save time and mental energy for more important matters.
+  documentation: https://black.readthedocs.io/
+  repository: https://github.com/psf/black
+
+extra:
+  recipe-maintainers:
+    - raybellwaves
+    - seanlaw
+    - carlodri
+    - ambv
+    - mariusvniekerk
+    - xhochy
