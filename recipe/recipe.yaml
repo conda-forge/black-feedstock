@@ -23,7 +23,11 @@ outputs:
   - package:
       name: black
     build:
-      script: HATCH_VERBOSE=3 HATCH_BUILD_HOOKS_ENABLE=1 ${{ PYTHON }} -m pip install . -vv
+      script:
+        env:
+          HATCH_VERBOSE: "3"
+          HATCH_BUILD_HOOKS_ENABLE: "1"
+        content: ${{ PYTHON }} -m pip install . --no-deps -vv
       python:
         entry_points:
           - black = black:patched_main
@@ -32,10 +36,10 @@ outputs:
       build:
         - ${{ compiler('c') }}
         - ${{ stdlib('c') }}
-        - if: build_platform != host_platform
+        - if: build_platform != target_platform
           then:
             - python
-            - cross-python_${{ host_platform }}
+            - cross-python_${{ target_platform }}
             - mypyc ==${{ mypyc_version }} # for a usable python-librt
       host:
         - if: is_abi3
