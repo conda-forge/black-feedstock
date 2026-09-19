@@ -1,5 +1,5 @@
-About black-recipe-feedstock
-============================
+About black-feedstock
+=====================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/black-feedstock/blob/main/LICENSE.txt)
 
@@ -18,15 +18,62 @@ to cease control over minutiae of hand-formatting. In return, Black gives
 you speed, determinism, and freedom from pycodestyle nagging about
 formatting. You will save time and mental energy for more important matters.
 
-
 Current build status
 ====================
 
 
 <table><tr>
-    <td>All platforms:</td>
+    <td>GitHub Actions</td>
     <td>
-      <img src="https://img.shields.io/badge/noarch-disabled-lightgrey.svg" alt="noarch disabled">
+      <a href="https://github.com/conda-forge/black-feedstock/actions/workflows/conda-build.yml">
+        <img src="https://github.com/conda-forge/black-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=main">
+      </a>
+    </td>
+  </tr>
+    
+  <tr>
+    <td>Azure</td>
+    <td>
+      <details>
+        <summary>
+          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3700&branchName=main">
+            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/black-feedstock?branchName=main">
+          </a>
+        </summary>
+        <table>
+          <thead><tr><th>Variant</th><th>Status</th></tr></thead>
+          <tbody><tr>
+              <td>osx_64_python3.11.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3700&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/black-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_python3.11.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_python3.12.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3700&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/black-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_python3.12.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_python3.13.____cp313</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3700&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/black-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_python3.13.____cp313" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_python3.14.____cp314</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3700&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/black-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_python3.14.____cp314" alt="variant">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
     </td>
   </tr>
 </table>
@@ -41,41 +88,83 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-black--jupyter-green.svg)](https://anaconda.org/conda-forge/black-jupyter) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/black-jupyter.svg)](https://anaconda.org/conda-forge/black-jupyter) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/black-jupyter.svg)](https://anaconda.org/conda-forge/black-jupyter) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/black-jupyter.svg)](https://anaconda.org/conda-forge/black-jupyter) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-blackd-green.svg)](https://anaconda.org/conda-forge/blackd) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/blackd.svg)](https://anaconda.org/conda-forge/blackd) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/blackd.svg)](https://anaconda.org/conda-forge/blackd) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/blackd.svg)](https://anaconda.org/conda-forge/blackd) |
 
-Installing black-recipe
-=======================
+Installing black
+================
 
-Installing `black-recipe` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `black` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `black, black-colorama, black-jupyter, blackd` can be installed with `conda`:
+How to use
+----------
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda install black black-colorama black-jupyter blackd
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba install black black-colorama black-jupyter blackd
 ```
 
-It is possible to list all of the versions of `black` available on your platform with `conda`:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+# for adding to your local project
+pixi add black black-colorama black-jupyter blackd
+# for installing globally
+pixi global install black black-colorama black-jupyter blackd
+```
+
+</details>
+
+Search package versions
+-----------------------
+
+It is possible to list all of the versions of `black` available on your platform:
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda search black --channel conda-forge
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba search black --channel conda-forge
 ```
 
-Alternatively, `mamba repoquery` may provide more information:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+pixi search black --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With mamba repoquery, which may provide more information</summary>
 
 ```
 # Search all versions available on your platform:
@@ -87,6 +176,8 @@ mamba repoquery whoneeds black --channel conda-forge
 # List dependencies of `black`:
 mamba repoquery depends black --channel conda-forge
 ```
+
+</details>
 
 
 About conda-forge
@@ -130,17 +221,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating black-recipe-feedstock
-===============================
+Updating black-feedstock
+========================
 
-If you would like to improve the black-recipe recipe or build a new
+If you would like to improve the black recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/black-recipe-feedstock are
+Note that all branches in the conda-forge/black-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
