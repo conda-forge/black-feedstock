@@ -73,8 +73,8 @@ outputs:
               - abi3audit
           script:
             - if: unix
-              then: abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} $(find $SP_DIR/black -name *.so)
-              else: abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} %SP_DIR%/black/*.pyd
+              then: abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} $SP_DIR/*mypyc*.so $(find $SP_DIR/black -name *.so)
+              else: FOR %%F in (%SP_DIR%\*mypyc*.pyd %SP_DIR%\black\*.pyd) DO abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} %%F
       - script:
           - black --help
           - which blackd || where blackd
