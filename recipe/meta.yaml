@@ -1,13 +1,13 @@
 {% set name = "black" %}
-{% set version = "26.5.1" %}
+{% set version = "26.10.1" %}
 
 package:
   name: black-recipe
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/b/black/black-{{ version }}.tar.gz
-  sha256: dd321f668053961824bcc1be1cc1df748b2d7e4fa28086b08331e577b0100a73
+  url: https://files.pythonhosted.org/packages/source/b/black/black-{{ version }}.tar.gz
+  sha256: 5f9f83beae62437e060dafd53d7f1fc327e3d3494f74d72ee5c2b73eb90fc4e7
 
 build:
   number: 0
@@ -22,8 +22,7 @@ outputs:
         - blackd = blackd:patched_main
     requirements:
       host:
-        - python >=3.11                     # [not py_lt_311]
-        - python {{ python_min }}           # [py_lt_311]
+        - python {{ python_min }}
         - pip
         - hatchling >=1.27.0
         - hatch-vcs >=0.3.0
@@ -32,17 +31,13 @@ outputs:
         - click >=8.0.0
         - platformdirs >=2
         - packaging >=22.0
-        - pathspec >=0.9
+        - pathspec >=1.0.0
         - mypy_extensions >=0.4.3
-        - pytokens >=0.4
-        - tomli >=1.1.0                     # [py_lt_311]
-        - typing_extensions >=4.0.1         # [py_lt_311]
-        - python >={{ python_min }},<3.11   # [py_lt_311]
-        - python >=3.11                     # [not py_lt_311]
+        - pytokens >=0.4.0,<0.5.0
+        - python >={{ python_min }}
     test:
       requires:
-        - python {{ python_min }}           # [py_lt_311]
-        - python 3.11                       # [not py_lt_311]
+        - python {{ python_min }}
         - pip
       commands:
         - black --help
@@ -58,8 +53,7 @@ outputs:
         - aiohttp >=3.10
     test:
       requires:
-        - python {{ python_min }}    # [py_lt_311]
-        - python 3.11                # [not py_lt_311]
+        - python {{ python_min }}
       commands:
         - black --help
         - blackd --help
@@ -73,8 +67,7 @@ outputs:
         - colorama >=0.4.3
     test:
       requires:
-        - python {{ python_min }}    # [py_lt_311]
-        - python 3.11                # [not py_lt_311]
+        - python {{ python_min }}
       commands:
         - black --help
 
@@ -88,8 +81,7 @@ outputs:
         - tokenize-rt >=3.2.0
     test:
       requires:
-        - python {{ python_min }}    # [py_lt_311]
-        - python 3.11                # [not py_lt_311]
+        - python {{ python_min }}
       commands:
         - black --help
         - python -c "import black.handle_ipynb_magics; assert black.handle_ipynb_magics.jupyter_dependencies_are_installed(warn=True) == True"
