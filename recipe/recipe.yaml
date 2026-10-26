@@ -1,0 +1,128 @@
+context:
+  version: "26.10.1"
+
+recipe:
+  name: black-recipe
+  version: ${{ version }}
+
+source:
+  url: https://files.pythonhosted.org/packages/source/b/black/black-${{ version }}.tar.gz
+  sha256: 5f9f83beae62437e060dafd53d7f1fc327e3d3494f74d72ee5c2b73eb90fc4e7
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: black
+    build:
+      noarch: python
+      script: python -m pip install . -vv --no-deps --no-build-isolation
+      python:
+        entry_points:
+          - black = black:patched_main
+          - blackd = blackd:patched_main
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+        - pip
+        - hatchling >=1.27.0
+        - hatch-vcs >=0.3.0
+        - hatch-fancy-pypi-readme
+      run:
+        - click >=8.0.0
+        - platformdirs >=2
+        - packaging >=22.0
+        - pathspec >=1.0.0
+        - mypy_extensions >=0.4.3
+        - pytokens >=0.4.0,<0.5.0
+        - python >=${{ python_min }}
+    tests:
+      - python:
+          imports:
+            - black
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - "*"
+        requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+      - script:
+          - black --help
+          - which blackd || where blackd
+        requirements:
+          run:
+            - python ${{ python_min }}.*
+
+  - package:
+      name: blackd
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage('black', upper_bound='x.x.x') }}
+        - aiohttp >=3.10
+    tests:
+      - script:
+          - black --help
+          - blackd --help
+        requirements:
+          run:
+            - python ${{ python_min }}.*
+
+  - package:
+      name: black-colorama
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage('black', upper_bound='x.x.x') }}
+        - colorama >=0.4.3
+    tests:
+      - script:
+          - black --help
+        requirements:
+          run:
+            - python ${{ python_min }}.*
+
+  - package:
+      name: black-jupyter
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage('black', upper_bound='x.x.x') }}
+        - ipython >=7.8.0
+        - tokenize-rt >=3.2.0
+    tests:
+      - script:
+          - black --help
+          - python -c "import black.handle_ipynb_magics; assert black.handle_ipynb_magics.jupyter_dependencies_are_installed(warn=True) == True"
+        requirements:
+          run:
+            - python ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/psf/black
+  license: MIT
+  license_file: LICENSE
+  summary: The uncompromising code formatter.
+  description: |
+    Black is the uncompromising Python code formatter. By using it, you agree
+    to cease control over minutiae of hand-formatting. In return, Black gives
+    you speed, determinism, and freedom from pycodestyle nagging about
+    formatting. You will save time and mental energy for more important matters.
+  documentation: https://black.readthedocs.io/
+  repository: https://github.com/psf/black
+
+extra:
+  feedstock-name: black
+  recipe-maintainers:
+    - raybellwaves
+    - seanlaw
+    - carlodri
+    - ambv
+    - mariusvniekerk
+    - xhochy
